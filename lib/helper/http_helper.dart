@@ -6,13 +6,13 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class HttpHelper {
   String urlKey = dotenv.env['API_KEY']!;
   final String urlBase = dotenv.env['BASE_URL']!;
-  final String urlUpcoming = '/upcoming?';
+  final String urlUpcoming = '/upcoming?api_key=';
   final String urlLanguage = '&language=en-Us';
 
   Future getUpComing() async {
-    final String upcoming = urlBase + urlUpcoming + urlLanguage;
-    http.Response result = await http.get(upcoming as Uri);
-
+    String uriUpcoming = urlBase + urlUpcoming + urlKey + urlLanguage;
+    var url = Uri.parse(uriUpcoming);
+    var result = await http.get(url);
     if (result.statusCode == HttpStatus.ok) {
       String responseBody = result.body;
       print(responseBody.toString());
