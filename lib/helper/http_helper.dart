@@ -8,8 +8,12 @@ import '../model/movie.dart';
 class HttpHelper {
   String urlKey = dotenv.env['API_KEY']!;
   final String urlBase = dotenv.env['BASE_URL']!;
-  final String urlUpcoming = '/upcoming?api_key=';
+  final String urlUpcoming = '/movie/upcoming?api_key=';
   final String urlLanguage = '&language=en-Us';
+  final String urlSearchBase = '/search/movie?api_key=';
+  final String urlQuery = '&query=';
+  final String urlcari =
+      'https://api.themoviedb.org/3/search/movie?api_key=16121e1be4dd96ac647ed388df1dde93&query=kung&';
 
   Future getUpComing() async {
     String uriUpcoming = urlBase + urlUpcoming + urlKey + urlLanguage;
@@ -19,7 +23,20 @@ class HttpHelper {
       final jsonResponse = json.decode(result.body);
       final moviesMap = jsonResponse['results'];
       List movies = moviesMap.map((i) => Movie.fromJson(i)).toList();
-      print(movies.length);
+      return movies;
+    } else {
+      return null;
+    }
+  }
+
+  Future findMovies(String title) async {
+    final String query = urlBase + urlSearchBase + urlKey + urlQuery + title;
+    print(query);
+    http.Response result = await http.get(Uri.parse(query));
+    if (result.statusCode == HttpStatus.ok) {
+      final jsonResponse = json.decode(result.body);
+      final moviesMap = jsonResponse['results'];
+      List movies = moviesMap.map((i) => Movie.fromJson(i)).toList();
       return movies;
     } else {
       return null;
