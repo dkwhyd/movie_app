@@ -10,6 +10,8 @@ class HttpHelper {
   final String urlBase = dotenv.env['BASE_URL']!;
   final String urlUpcoming = '/upcoming?api_key=';
   final String urlLanguage = '&language=en-Us';
+  final String urlSearchBase = '/search/movie?api_key=';
+  final String urlQuery = '&query=';
 
   Future getUpComing() async {
     String uriUpcoming = urlBase + urlUpcoming + urlKey + urlLanguage;
@@ -19,7 +21,19 @@ class HttpHelper {
       final jsonResponse = json.decode(result.body);
       final moviesMap = jsonResponse['results'];
       List movies = moviesMap.map((i) => Movie.fromJson(i)).toList();
-      print(movies.length);
+      return movies;
+    } else {
+      return null;
+    }
+  }
+
+  Future findMovies(String title) async {
+    final String query = urlBase + urlSearchBase + urlKey + urlQuery + title;
+    http.Response result = await http.get(Uri.parse(query));
+    if (result.statusCode == HttpStatus.ok) {
+      final jsonResponse = json.decode(result.body);
+      final moviesMap = jsonResponse['results'];
+      List movies = moviesMap.map((i) => Movie.fromJson(i)).toList();
       return movies;
     } else {
       return null;

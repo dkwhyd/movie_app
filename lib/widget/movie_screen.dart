@@ -13,17 +13,6 @@ class MovieScreen extends StatefulWidget {
 class _MovieScreenState extends State<MovieScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Movie App'),
-        backgroundColor: Colors.green,
-      ),
-      body: const SafeArea(
-        child: SingleChildScrollView(
-          child: MovieList(),
-        ),
-      ),
-    );
+    return const SafeArea(child: MovieList());
   }
-
 }
