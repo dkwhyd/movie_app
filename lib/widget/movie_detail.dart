@@ -27,64 +27,63 @@ class MovieDetail extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               padding: const EdgeInsets.all(16),
-              height: height / 2,
               child: Center(
-                child: Row(
+                child: Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
-                    Image.network(path.toString()),
-                    Expanded(
+                    Center(
+                      child: Image.network(
+                        path.toString(),
+                        width: 500,
+                        height: height / 2,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Release:',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      decoration: TextDecoration.underline),
-                                ),
-                                Text(
-                                  movie!.releaseDate.toString(),
-                                  style: const TextStyle(),
-                                )
-                              ],
-                            ),
+                          const Text(
+                            'Release:',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                decoration: TextDecoration.underline),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Ratings:',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      decoration: TextDecoration.underline),
-                                ),
-                                Text(
-                                  movie!.voteAverage.toString(),
-                                  style: const TextStyle(),
-                                )
-                              ],
-                            ),
+                          Text(
+                            movie!.releaseDate.toString(),
+                            style: const TextStyle(),
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            'Ratings:',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                decoration: TextDecoration.underline),
+                          ),
+                          Text(
+                            movie!.voteAverage.toString(),
+                            style: const TextStyle(),
+                          ),
+                          const Text(
+                            'Overview:',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                decoration: TextDecoration.underline),
+                          ),
+                          Text(
+                            movie!.overview.toString(),
+                            style: const TextStyle(),
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(left: 16, right: 16),
-              child: Text(movie!.overview.toString()),
             ),
           ],
         ),
