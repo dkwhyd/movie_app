@@ -19,11 +19,8 @@ class _MovieScreenState extends State<MovieScreen> {
         backgroundColor: Colors.green,
       ),
       body: const SafeArea(
-        child: SingleChildScrollView(
-          child: MovieList(),
-        ),
+        child: MovieList(),
       ),
     );
   }
-
 }
