@@ -11,12 +11,16 @@ class MovieScreen extends StatefulWidget {
 }
 
 class _MovieScreenState extends State<MovieScreen> {
+  Icon visibleIcon = const Icon(Icons.search);
+  Widget searchBar = const Text('Movies App');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Movie App'),
+        title: searchBar,
         backgroundColor: Colors.green,
+        actions: [IconButton(onPressed: () {}, icon: visibleIcon)],
       ),
       body: const SafeArea(
         child: MovieList(),
