@@ -13,6 +13,10 @@ class HttpHelper {
   final String urlSearchBase = '/search/movie?api_key=';
   final String urlQuery = '&query=';
 
+  final String urlPopular = '/movie/popular?api_key=';
+
+  final String urlNowPlaing = '/movie/now_playing?api_key=';
+
   Future getUpComing() async {
     String uriUpcoming = urlBase + urlUpcoming + urlKey + urlLanguage;
     var url = Uri.parse(uriUpcoming);
@@ -27,9 +31,37 @@ class HttpHelper {
     }
   }
 
+  Future getPopular() async {
+    String uriPopular = urlBase + urlPopular + urlKey + urlLanguage;
+    var url = Uri.parse(uriPopular);
+    var result = await http.get(url);
+    if (result.statusCode == HttpStatus.ok) {
+      final jsonResponse = json.decode(result.body);
+      final moviesMap = jsonResponse['results'];
+      List movies = moviesMap.map((i) => Movie.fromJson(i)).toList();
+      return movies;
+    } else {
+      return null;
+    }
+  }
+
   Future findMovies(String title) async {
     final String query = urlBase + urlSearchBase + urlKey + urlQuery + title;
     http.Response result = await http.get(Uri.parse(query));
+    if (result.statusCode == HttpStatus.ok) {
+      final jsonResponse = json.decode(result.body);
+      final moviesMap = jsonResponse['results'];
+      List movies = moviesMap.map((i) => Movie.fromJson(i)).toList();
+      return movies;
+    } else {
+      return null;
+    }
+  }
+
+ Future getNowPlaying() async {
+    String uriNowPlaying = urlBase + urlNowPlaing + urlKey + urlLanguage;
+    var url = Uri.parse(uriNowPlaying);
+    var result = await http.get(url);
     if (result.statusCode == HttpStatus.ok) {
       final jsonResponse = json.decode(result.body);
       final moviesMap = jsonResponse['results'];
