@@ -8,7 +8,7 @@ import '../model/movie.dart';
 class HttpHelper {
   String urlKey = dotenv.env['API_KEY']!;
   final String urlBase = dotenv.env['BASE_URL']!;
-  final String urlUpcoming = '/movie/upcoming?api_key=';
+  final String urlUpcoming = '/upcoming?api_key=';
   final String urlLanguage = '&language=en-Us';
   final String urlSearchBase = '/search/movie?api_key=';
   final String urlQuery = '&query=';
