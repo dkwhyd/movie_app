@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:movie_app/helper/http_helper.dart';
+import 'package:movie_app/widget/movie_detail.dart';
 
 class MovieList extends StatefulWidget {
   const MovieList({super.key});
@@ -53,6 +54,9 @@ class _MovieListState extends State {
                     subtitle: Text(
                       'Released: ${movies == null ? '' : movies?[position].releaseDate} - Vote: ${movies?[position].voteAverage.toString()}',
                     ),
+                    onTap: () {
+                      detailMovie(position);
+                    },
                   ),
                 );
               },
@@ -69,5 +73,10 @@ class _MovieListState extends State {
       moviesCount = movies?.length;
       movies = movies;
     });
+  }
+
+  void detailMovie(int position) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (_) => MovieDetail(movies?[position])));
   }
 }
