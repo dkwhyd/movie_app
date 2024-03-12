@@ -13,7 +13,6 @@ class HttpHelper {
   final String urlSearchBase = '/search/movie?api_key=';
   final String urlQuery = '&query=';
 
-
   Future getUpComing() async {
     String uriUpcoming = urlBase + urlUpcoming + urlKey + urlLanguage;
     var url = Uri.parse(uriUpcoming);
