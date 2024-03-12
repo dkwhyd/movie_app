@@ -13,6 +13,6 @@ class MovieScreen extends StatefulWidget {
 class _MovieScreenState extends State<MovieScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: MovieList());
+    return const SafeArea(child: MovieList());
   }
 }

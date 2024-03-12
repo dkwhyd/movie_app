@@ -44,10 +44,10 @@ class _MovieListState extends State {
                 onPressed: () {
                   setState(() {
                     if (visibleIcon.icon == Icons.search) {
-                      visibleIcon = Icon(Icons.cancel);
+                      visibleIcon = const Icon(Icons.cancel);
                       searchBar = TextField(
                         textInputAction: TextInputAction.search,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
                         ),
@@ -57,8 +57,8 @@ class _MovieListState extends State {
                       );
                     } else {
                       setState(() {
-                        this.visibleIcon = Icon(Icons.search);
-                        this.searchBar = Text('Movies');
+                        visibleIcon = const Icon(Icons.search);
+                        searchBar = const Text('Movies');
                         initialize();
                       });
                     }
@@ -85,7 +85,7 @@ class _MovieListState extends State {
                         ),
                         title: Text(
                           movies == null ? '' : movies?[position].title,
-                          style: TextStyle(fontWeight: FontWeight.w500),
+                          style: const TextStyle(fontWeight: FontWeight.w500),
                         ),
                         subtitle: Text(
                           'Released: ${movies == null ? '' : movies?[position].releaseDate} - Vote: ${movies?[position].voteAverage.toString()}',

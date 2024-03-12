@@ -31,7 +31,6 @@ class HttpHelper {
 
   Future findMovies(String title) async {
     final String query = urlBase + urlSearchBase + urlKey + urlQuery + title;
-    print(query);
     http.Response result = await http.get(Uri.parse(query));
     if (result.statusCode == HttpStatus.ok) {
       final jsonResponse = json.decode(result.body);
