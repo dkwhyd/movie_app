@@ -20,24 +20,29 @@ class MovieDetail extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(movie != null ? movie!.title.toString() : ''),
+        backgroundColor: Colors.green,
+        title: Center(
+          child: Text(movie != null ? movie!.title.toString() : ''),
+        ),
       ),
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(16),
-                height: height / 2,
-                child: Center(
-                  child: Row(
-                    children: [
-                      Image.network(path.toString()),
-                      Column(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              height: height / 2,
+              child: Center(
+                child: Row(
+                  children: [
+                    Image.network(path.toString()),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 5),
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
                                   'Release:',
@@ -55,6 +60,7 @@ class MovieDetail extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 5),
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
                                   'Ratings:',
@@ -68,19 +74,19 @@ class MovieDetail extends StatelessWidget {
                                 )
                               ],
                             ),
-                          )
+                          ),
                         ],
-                      )
-                    ],
-                  ),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.only(left: 16, right: 16),
-                child: Text(movie!.overview.toString()),
-              ),
-            ],
-          ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: Text(movie!.overview.toString()),
+            ),
+          ],
         ),
       ),
     );
